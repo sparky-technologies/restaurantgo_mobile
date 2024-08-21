@@ -1,7 +1,7 @@
-import banner from "@/assets/images/banner.png"
-import check from "@/assets/images/check.png"
+import banner from "@/assets/images/banner.png";
+import check from "@/assets/images/check.png";
 import chicken from "@/assets/images/chicken.png";
-import creditcard from "@/assets/images/credit-card.png"
+import creditcard from "@/assets/images/credit-card.png";
 import bugger from "@/assets/images/bugger.png";
 import logo from "@/assets/images/logo.png";
 import drinks from "@/assets/images/drinks.png";
@@ -21,32 +21,34 @@ import logout from "@/assets/icons/logout.png";
 import profileNav from "@/assets/icons/profile-nav.png";
 import lock from "@/assets/icons/lock-2-line.png";
 import search from "@/assets/icons/search-line.png";
+import eyeOpen from "@/assets/icons/eye-open.png";
 
 export const images = {
-    banner,
-    check,
-    chicken,
-    creditcard,
-    bugger,
-    logo,
-    drinks,
-    food1,
-    food2,
-    food1p,
-    pizza,
-    profile,
-}
+  banner,
+  check,
+  chicken,
+  creditcard,
+  bugger,
+  logo,
+  drinks,
+  food1,
+  food2,
+  food1p,
+  pizza,
+  profile,
+};
 
 export const icons = {
-    bell,
-    eyeClose,
-    eyes,
-    home,
-    leftArrow,
-    filter,
-    help,
-    logout,
-    profileNav,
-    lock,
-    search,
-}
+  bell,
+  eyeClose,
+  eyes,
+  home,
+  leftArrow,
+  filter,
+  help,
+  logout,
+  profileNav,
+  lock,
+  search,
+  eyeOpen,
+};
