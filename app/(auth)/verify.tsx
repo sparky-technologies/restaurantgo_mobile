@@ -12,7 +12,7 @@ type Props = {};
 const Verification = (props: Props) => {
   const [otp, setOtp] = useState(Array(4).fill(""));
   const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const handleDone = () => {
     setShowModal(false);
     router.push("/(auth)/sign-in");
