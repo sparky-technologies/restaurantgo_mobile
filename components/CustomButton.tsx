@@ -4,11 +4,20 @@ interface Props {
   title: string;
   loading: boolean;
   handlePress: () => void;
+  width?: number;
+  height?: number;
 }
 
-const CustomButton = ({ title, loading, handlePress }: Props) => (
+const CustomButton = ({
+  title,
+  loading,
+  handlePress,
+  width,
+  height,
+}: Props) => (
   <TouchableOpacity
-    className="w-[312px] h-[63px] bg-primary rounded-[10px]"
+    className={` bg-primary rounded-[10px]`}
+    style={{ width: width || 312, height: height || 63 } as any}
     onPress={loading ? (null as any) : handlePress}
     activeOpacity={loading ? 1 : 0.7}
   >
