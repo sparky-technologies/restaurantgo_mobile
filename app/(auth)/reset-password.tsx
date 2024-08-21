@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import InputField from "@/components/InputField";
 import CustomButton from "@/components/CustomButton";
+import { router } from "expo-router";
 
 type Props = {};
 
@@ -15,6 +16,7 @@ const ResetPassword = (props: Props) => {
     // TODO: api request reset password
     console.log("Reset Password");
     console.log(form);
+    router.push("/(auth)/verify");
   };
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(false);
