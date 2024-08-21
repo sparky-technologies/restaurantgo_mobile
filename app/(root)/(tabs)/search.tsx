@@ -3,12 +3,12 @@ import React from 'react'
 
 type Props = {}
 
-const ResetPassword = (props: Props) => {
+const Search = (props: Props) => {
   return (
     <View>
-      <Text>ResetPassword</Text>
+      <Text>Search</Text>
     </View>
   )
 }
 
-export default ResetPassword
+export default Search

@@ -3,12 +3,12 @@ import React from 'react'
 
 type Props = {}
 
-const ResetPassword = (props: Props) => {
+const Profile = (props: Props) => {
   return (
     <View>
-      <Text>ResetPassword</Text>
+      <Text>Profile</Text>
     </View>
   )
 }
 
-export default ResetPassword
+export default Profile

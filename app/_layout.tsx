@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
+SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const [loaded] = useFonts({
     "Stratos-Bold": require("../assets/fonts/stratos-bold.otf"),
