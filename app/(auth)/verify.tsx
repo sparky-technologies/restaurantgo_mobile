@@ -5,7 +5,9 @@ import OtpInput from "@/components/OtpInput";
 import CustomButton from "@/components/CustomButton";
 import ReactNativeModal from "react-native-modal";
 import { images } from "@/constants";
-import { router } from "expo-router";
+import { Href, router } from "expo-router";
+import { useRouteStore } from "@/store";
+import CustomModal from "@/components/CustomModal";
 
 type Props = {};
 
@@ -13,12 +15,22 @@ const Verification = (props: Props) => {
   const [otp, setOtp] = useState(Array(4).fill(""));
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const { route } = useRouteStore();
   const handleDone = () => {
+    console.log(route);
     setShowModal(false);
-    router.push("/(auth)/sign-in");
+    if (route === "sign-up") {
+      // push to login page
+      router.push("/(auth)/sign-in");
+    } else {
+      // else push to change password page
+      // TODO: create this screen
+      router.push("/(auth)/change-password" as Href);
+    }
   };
   const handleOtpSubmit = () => {
     // TODO: implement otp submit
+    setShowModal(true);
     console.log("Otp Submitted");
     console.log(otp.join(""));
   };
@@ -27,40 +39,24 @@ const Verification = (props: Props) => {
       <View>
         <Text className="text-[24px] font-StratosBold">Verify your email</Text>
       </View>
-      <View className="mt-8">
+      <View className="mt-10">
         <OtpInput otp={otp} setOtp={setOtp} />
       </View>
-      <View className="mt-10">
+      <View className="mt-[50px]">
         <CustomButton
           title="Submit"
           loading={loading}
           handlePress={handleOtpSubmit}
         />
       </View>
-      <ReactNativeModal isVisible={showModal}>
-        <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
-          <Image
-            source={images.check}
-            className="w-[110px] mx-auto h-[110px] my-5"
-          />
-          <Text className="text-2xl text-center font-StratosMedium">
-            Successful!
-          </Text>
-          <Text className="text-base text-gray-400 font-Stratos-Light text-center mt-2">
-            You have successfully verified your email. You can now proceed to
-            login.
-          </Text>
-          <View className="p-4">
-            <CustomButton
-              title="Continue"
-              handlePress={handleDone}
-              loading={false}
-              width={241}
-              height={64}
-            />
-          </View>
-        </View>
-      </ReactNativeModal>
+      <CustomModal
+        showModal={showModal}
+        title="Successful"
+        text="You have successfully verified your email. You can now proceed to
+            login"
+        btnTitle="Continue"
+        handleDone={handleDone}
+      />
     </SafeAreaView>
   );
 };

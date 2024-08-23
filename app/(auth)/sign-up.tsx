@@ -4,7 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import InputField from "@/components/InputField";
 import { icons } from "@/constants";
 import CustomButton from "@/components/CustomButton";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+import { useRouteStore } from "@/store";
 
 type Props = {};
 
@@ -15,10 +16,13 @@ const SignUp = (props: Props) => {
     password: "",
     confirmPassword: "",
   });
+  const { setRoute } = useRouteStore();
   const handleSignUp = () => {
     setLoading(true);
+    setRoute("sign-up");
     console.log("Form Submitted!");
     console.log(form);
+    router.push("/(auth)/verify");
     setLoading(false);
   };
   const [loading, setLoading] = useState(false);

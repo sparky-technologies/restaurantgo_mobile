@@ -8,6 +8,7 @@ export default function Layout() {
       <Stack.Screen name="sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="reset-password" options={{ headerShown: false }} />
       <Stack.Screen name="verify" options={{ headerShown: false }} />
+      <Stack.Screen name="change-password" options={{ headerShown: false }} />
     </Stack>
   );
 }
