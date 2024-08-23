@@ -23,6 +23,7 @@ import lock from "@/assets/icons/lock-2-line.png";
 import search from "@/assets/icons/search-line.png";
 import eyeOpen from "@/assets/icons/eye-open.png";
 import checkout from "@/assets/icons/checkout.png";
+import banner2 from "@/assets/images/banner2.svg";
 
 export const images = {
   banner,
@@ -37,6 +38,7 @@ export const images = {
   food1p,
   pizza,
   profile,
+  banner2,
 };
 
 export const icons = {

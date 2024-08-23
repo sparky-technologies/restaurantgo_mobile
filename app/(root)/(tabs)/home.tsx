@@ -1,9 +1,9 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CustomButton from "@/components/CustomButton";
-import { icons } from "@/constants";
+import { icons, images } from "@/constants";
 
 type Props = {};
 
@@ -41,6 +41,26 @@ const Home = (props: Props) => {
             height={40}
           />
         </View>
+      </View>
+      <View className="flex flex-row mt-4 justify-between">
+        <View className="flex flex-row w-[260px] justify-start p-2 items-center relative bg-neutral-100 rounded-[20px] border-[1px] border-primary">
+          <Image source={icons.search} className="w-6 h-6 ml-4" />
+          <TextInput
+            placeholder="Search for delicious meal around you"
+            className="px-2 py-2 text-[11px] flex-1 font-Stratos"
+          />
+        </View>
+        {/* TODO: Optimize this filter icon to button  */}
+        <View className="flex flex-col ms-2">
+          <Image source={icons.filter} />
+          <Text className="text-sm font-StratosMedium text-center mt-2">
+            Filter
+          </Text>
+        </View>
+      </View>
+
+      <View className="w-full mt-5 h-[134px]">
+        <Image source={images.banner} resizeMode="contain" />
       </View>
     </SafeAreaView>
   );
