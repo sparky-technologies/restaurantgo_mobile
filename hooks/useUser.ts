@@ -7,32 +7,33 @@ interface User {
 
 export const useUser = () => {
   const [user, setUser] = useState<User | null>(null);
+  var userData: User = { email: "ayobamidele006@gmail.com" };
 
   const getUser = async (key: string) => {
     try {
       const data = await getData(key);
       if (data) {
-        return data;
+        userData = {
+          email: data,
+        };
       } else {
+        console.log(data);
         // TODO: change this later, this is for dev
-        return "ayobamidele006@gmail.com";
+        userData = { email: "ayobamidele006@gmail.com" };
+        setUser((prev) => ({
+          ...prev,
+          ...{ email: "ayobamidele006@gmail.com" },
+        }));
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  //   useEffect(() => {
-  //     getUser("key").then((email) => {
-  //       console.log(email);
-  //       setUser({ email: email as string });
-  //     });
-  //   }, []);
+  useEffect(() => {
+    getUser("user");
+  }, []);
 
-  //   useEffect(() => {
-  //     console.log(user);
-  //   }, [user]);
-
-  //   console.log(user);
-  return { getUser };
+  console.log(user);
+  return { getUser, user };
 };
