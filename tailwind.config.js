@@ -19,9 +19,8 @@ module.exports = {
         secondary: "#555555",
         other: "#8DE67F",
         border: "#D33237",
-      }
+      },
     },
   },
   plugins: [],
-}
-
+};

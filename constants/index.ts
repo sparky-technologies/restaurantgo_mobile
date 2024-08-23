@@ -22,6 +22,7 @@ import profileNav from "@/assets/icons/profile-nav.png";
 import lock from "@/assets/icons/lock-2-line.png";
 import search from "@/assets/icons/search-line.png";
 import eyeOpen from "@/assets/icons/eye-open.png";
+import checkout from "@/assets/icons/checkout.png";
 
 export const images = {
   banner,
@@ -51,4 +52,5 @@ export const icons = {
   lock,
   search,
   eyeOpen,
+  checkout,
 };
