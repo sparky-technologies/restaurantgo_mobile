@@ -89,11 +89,13 @@ const SignUp = (props: Props) => {
           }
         />
         <View className="mt-8">
-          <CustomButton
-            title="Sign up"
-            loading={loading}
-            handlePress={handleSignUp}
-          />
+          <View className="flex items-center justify-center">
+            <CustomButton
+              title="Sign up"
+              loading={loading}
+              handlePress={handleSignUp}
+            />
+          </View>
           <View className="flex mt-2 flex-row justify-center">
             <Text className="font-Stratos">Already have an account?, </Text>
             <Link href="/(auth)/sign-in">

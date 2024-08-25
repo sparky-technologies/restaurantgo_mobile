@@ -63,11 +63,13 @@ const SignIn = (props: Props) => {
           </Link>
         </View>
         <View className="mt-5">
-          <CustomButton
-            loading={loading}
-            title="Login"
-            handlePress={handleLogin}
-          />
+          <View className="flex justify-center items-center">
+            <CustomButton
+              loading={loading}
+              title="Login"
+              handlePress={handleLogin}
+            />
+          </View>
           <View className="flex mt-2 flex-row justify-center">
             <Text className="font-Stratos">Don't have an account?, </Text>
             <Link href="/(auth)/sign-up">

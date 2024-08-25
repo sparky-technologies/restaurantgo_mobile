@@ -28,13 +28,15 @@ const CustomModal = ({
         {text}
       </Text>
       <View className="p-4">
-        <CustomButton
-          title={btnTitle}
-          handlePress={handleDone}
-          loading={false}
-          width={241}
-          height={64}
-        />
+        <View className="flex justify-center items-center">
+          <CustomButton
+            title={btnTitle}
+            handlePress={handleDone}
+            loading={false}
+            width={241}
+            height={64}
+          />
+        </View>
       </View>
     </View>
   </ReactNativeModal>

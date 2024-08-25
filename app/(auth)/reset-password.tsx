@@ -45,11 +45,13 @@ const ResetPassword = (props: Props) => {
         />
       </View>
       <View className="mt-4">
-        <CustomButton
-          loading={loading}
-          title="Reset Password"
-          handlePress={handleResetButtonPress}
-        />
+        <View className="flex justify-center items-center">
+          <CustomButton
+            loading={loading}
+            title="Reset Password"
+            handlePress={handleResetButtonPress}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
