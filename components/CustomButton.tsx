@@ -6,6 +6,7 @@ interface Props {
   handlePress: () => void;
   width?: number;
   height?: number;
+  textSize?: string;
 }
 
 const CustomButton = ({
@@ -14,9 +15,10 @@ const CustomButton = ({
   handlePress,
   width,
   height,
+  textSize,
 }: Props) => (
   <TouchableOpacity
-    className={` bg-primary rounded-[10px]`}
+    className={` bg-primary rounded-[4px]`}
     style={{ width: width || 312, height: height || 63 } as any}
     onPress={loading ? (null as any) : handlePress}
     activeOpacity={loading ? 1 : 0.7}
@@ -25,7 +27,9 @@ const CustomButton = ({
       {loading ? (
         <ActivityIndicator size={25} color="#D33237" />
       ) : (
-        <Text className="text-white text-center font-StratosMedium text-[18px]">
+        <Text
+          className={`text-white text-center font-StratosMedium ${textSize ? `text-[${textSize}px]` : "text-[18px]"} `}
+        >
           {title}
         </Text>
       )}

@@ -24,6 +24,7 @@ import search from "@/assets/icons/search-line.png";
 import eyeOpen from "@/assets/icons/eye-open.png";
 import checkout from "@/assets/icons/checkout.png";
 import banner2 from "@/assets/images/banner2.svg";
+import stars from "@/assets/icons/stars.png";
 
 export const images = {
   banner,
@@ -55,4 +56,35 @@ export const icons = {
   search,
   eyeOpen,
   checkout,
+  stars,
 };
+
+export const data = [
+  {
+    name: "Pounded Yam & Egusi Soup",
+    price: "4.25",
+    image: food1,
+    description:
+      "A delicious and hearty soup made from pounded yam and egusi. It's perfect for a quick breakfast or snack.",
+    category: "Soup",
+    rating: 4.5,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+  },
+];

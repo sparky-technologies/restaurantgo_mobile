@@ -5,12 +5,14 @@ import {
   Image,
   TextInput,
   FlatList,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CustomButton from "@/components/CustomButton";
-import { icons, images } from "@/constants";
+import { icons, images, data } from "@/constants";
+import FoodCard from "@/components/FoodCard";
 
 type Props = {};
 
@@ -64,6 +66,7 @@ const Home = (props: Props) => {
             handlePress={handleAddFundsPress}
             width={90}
             height={40}
+            textSize="11"
           />
         </View>
       </View>
@@ -101,13 +104,32 @@ const Home = (props: Props) => {
           )}
         />
       </View>
-      <View className="flex flex-row mt-5 justify-between">
+      <View className="flex flex-row my-4 justify-between">
         <Text className="text-[24px] font-StratosBold">Popular Foods</Text>
         <TouchableOpacity>
           <Text className="text-sm font-StratosMedium text-other">
             View all
           </Text>
         </TouchableOpacity>
+      </View>
+      {/* Food cards list */}
+      <View className="mb-10">
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <FlatList
+            data={data}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <FoodCard
+                name={item.name}
+                price={item.price}
+                loading={false}
+                image={item.image}
+                addToCart={() => console.log("Added to cart")}
+              />
+            )}
+          />
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

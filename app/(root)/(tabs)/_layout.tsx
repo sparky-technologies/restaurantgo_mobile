@@ -24,7 +24,7 @@ const TabLayout = () => {
         tabBarActiveTintColor: "#EB3134",
         headerShown: false,
         tabBarStyle: {
-          height: 72,
+          height: 52,
         },
         tabBarLabelStyle: {
           fontSize: 15,
