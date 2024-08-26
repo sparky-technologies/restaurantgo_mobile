@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TextInput,
+  FlatList,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
@@ -16,6 +23,24 @@ const Home = (props: Props) => {
   const handleShowBalancePress = () => {
     setShowBalance(!showBalance);
   };
+  const categories = [
+    {
+      name: "Pizza",
+      icon: images.pizza,
+    },
+    {
+      name: "Burger",
+      icon: images.bugger,
+    },
+    {
+      name: "Drinks",
+      icon: images.drinks,
+    },
+    {
+      name: "Chicken",
+      icon: images.chicken,
+    },
+  ];
   return (
     <SafeAreaView className="p-6">
       <Header />
@@ -61,6 +86,28 @@ const Home = (props: Props) => {
 
       <View className="w-full mt-5 h-[134px]">
         <Image source={images.banner} resizeMode="contain" />
+      </View>
+      <View className="mt-4">
+        <FlatList
+          data={categories}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <Image
+              source={item.icon}
+              className="w-[72px] h-[48px] mr-2"
+              resizeMode="contain"
+            />
+          )}
+        />
+      </View>
+      <View className="flex flex-row mt-5 justify-between">
+        <Text className="text-[24px] font-StratosBold">Popular Foods</Text>
+        <TouchableOpacity>
+          <Text className="text-sm font-StratosMedium text-other">
+            View all
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
