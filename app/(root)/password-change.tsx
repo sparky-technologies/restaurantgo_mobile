@@ -5,14 +5,21 @@ import Nav from "@/components/Nav";
 import InputField from "@/components/InputField";
 import { icons } from "@/constants";
 import CustomButton from "@/components/CustomButton";
+import CustomModal from "@/components/CustomModal";
+import { router } from "expo-router";
 
 type Props = {};
 
 const PasswordChange = (props: Props) => {
   const [secureTextEntry, setSecureTextEntry] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const handleSavePssword = () => {
+    setShowModal(true);
     console.log("Password Changed");
+  };
+  const handleDone = () => {
+    router.push("/profile");
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -53,6 +60,14 @@ const PasswordChange = (props: Props) => {
             handlePress={handleSavePssword}
           />
         </View>
+
+        <CustomModal
+          title="Successful"
+          showModal={showModal}
+          text="Your password has been successfully changed!"
+          handleDone={handleDone}
+          btnTitle="Continue"
+        />
       </ScrollView>
     </SafeAreaView>
   );
