@@ -107,7 +107,7 @@ const Home = (props: Props) => {
       </View>
       <View className="flex flex-row my-4 justify-between">
         <Text className="text-[24px] font-StratosBold">Popular Foods</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/search")}>
           <Text className="text-sm font-StratosMedium text-other">
             View all
           </Text>
