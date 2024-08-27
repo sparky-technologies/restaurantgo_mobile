@@ -36,6 +36,8 @@ const FoodDetail = (props: Props) => {
           <ImageBackground source={food?.image} className="w-[100%] h-[358px]">
             <View className="flex flex-row justify-between items-center p-10">
               <BackButton />
+              <Text className="font-StratosSemiBold text-[20px]">Order</Text>
+              <View></View>
             </View>
           </ImageBackground>
         </View>
