@@ -3,6 +3,7 @@ export default function RootTabLayout() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="password-change" options={{ headerShown: false }} />
     </Stack>
   );
 }

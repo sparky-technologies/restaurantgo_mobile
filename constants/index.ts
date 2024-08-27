@@ -25,6 +25,8 @@ import eyeOpen from "@/assets/icons/eye-open.png";
 import checkout from "@/assets/icons/checkout.png";
 import banner2 from "@/assets/images/banner2.svg";
 import stars from "@/assets/icons/stars.png";
+import rightArrow from "@/assets/icons/rightArrow.png";
+import world from "@/assets/icons/world.png";
 
 export const images = {
   banner,
@@ -57,6 +59,8 @@ export const icons = {
   eyeOpen,
   checkout,
   stars,
+  rightArrow,
+  world,
 };
 
 export const data = [
