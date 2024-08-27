@@ -54,6 +54,25 @@ const Profile = (props: Props) => {
       ]);
     }
   };
+  const handleDeleteAccount = () => {
+    Alert.alert(
+      "Delete Account",
+      "Are you sure you want to delete your account?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            // delete account code here
+          },
+        },
+      ],
+    );
+  };
   return (
     <SafeAreaView>
       <Nav title="Profile" />
@@ -102,6 +121,14 @@ const Profile = (props: Props) => {
             </View>
           </TouchableOpacity>
         ))}
+
+        <View className="mt-10">
+          <TouchableOpacity className="bg-transparent rounded-[10px] flex justify-center items-center  border-primary border-[1px] w-full h-[56px]">
+            <Text className="text-center font-StratosMedium text-primary text-[18px]">
+              Delete Account
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
