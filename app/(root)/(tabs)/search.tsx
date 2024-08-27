@@ -42,7 +42,7 @@ const Search = (props: Props) => {
           data={cats}
           keyExtractor={(item) => item}
           horizontal={true}
-          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           renderItem={({ item, index }) => (
             <TouchableHighlight
               className={`${activeIndex === index ? "bg-primary " : "bg-transparent border-gray-400 border-[1px]"} rounded-[4px] mr-2`}
