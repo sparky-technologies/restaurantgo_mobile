@@ -68,6 +68,7 @@ export const data = [
       "A delicious and hearty soup made from pounded yam and egusi. It's perfect for a quick breakfast or snack.",
     category: "Soup",
     rating: 4.5,
+    id: 1,
   },
   {
     name: "Grilled Chicken Salad",
@@ -77,6 +78,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
+    id: 2,
   },
   {
     name: "Grilled Chicken Salad",
@@ -86,5 +88,6 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
+    id: 3,
   },
 ];

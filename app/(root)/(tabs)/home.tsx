@@ -13,6 +13,7 @@ import Header from "@/components/Header";
 import CustomButton from "@/components/CustomButton";
 import { icons, images, data } from "@/constants";
 import FoodCard from "@/components/FoodCard";
+import { Href, router } from "expo-router";
 
 type Props = {};
 
@@ -120,13 +121,17 @@ const Home = (props: Props) => {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
-              <FoodCard
-                name={item.name}
-                price={item.price}
-                loading={false}
-                image={item.image}
-                addToCart={() => console.log("Added to cart")}
-              />
+              <TouchableOpacity
+                onPress={() => router.push(`/food/${item.id}` as Href)}
+              >
+                <FoodCard
+                  name={item.name}
+                  price={item.price}
+                  loading={false}
+                  image={item.image}
+                  addToCart={() => console.log("Added to cart")}
+                />
+              </TouchableOpacity>
             )}
           />
         </ScrollView>

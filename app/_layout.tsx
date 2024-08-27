@@ -16,7 +16,7 @@ export default function RootLayout() {
     "Stratos-Thin": require("../assets/fonts/stratos-thin.otf"),
     "Stratos-ExtraLight": require("../assets/fonts/stratos-extralight.otf"),
     "Stratos-SemiLight": require("../assets/fonts/stratos-semilight.otf"),
-  })
+  });
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
