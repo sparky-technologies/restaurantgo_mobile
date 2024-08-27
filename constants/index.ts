@@ -90,4 +90,94 @@ export const data = [
     rating: 4.8,
     id: 3,
   },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
+  {
+    name: "Grilled Chicken Salad",
+    price: "8.95",
+    image: food2,
+    description:
+      "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
+    category: "Salad",
+    rating: 4.8,
+    id: 3,
+  },
 ];

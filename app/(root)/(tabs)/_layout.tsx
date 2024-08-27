@@ -70,7 +70,7 @@ const TabLayout = () => {
       <Tabs.Screen
         name="checkout"
         options={{
-          title: "Checkout",
+          title: "Cart",
           tabBarIcon: ({ focused, color }) => (
             <TabIcon focused={focused} source={icons.checkout} />
           ),

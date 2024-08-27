@@ -13,6 +13,7 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { data, icons } from "@/constants";
 import BackButton from "@/components/BackButton";
 import CustomButton from "@/components/CustomButton";
+import Nav from "@/components/Nav";
 
 type Props = {};
 
@@ -20,7 +21,9 @@ const FoodDetail = (props: Props) => {
   const params = useLocalSearchParams();
   const { id } = params;
   const idNumber = Number(id);
-  const food = data[idNumber];
+  const food = data.find((food) => food.id === idNumber);
+  console.log(idNumber);
+  console.log(food);
   const handleAddtoCart = () => {
     Alert.alert("Cart", "New item added to cart");
   };
@@ -34,10 +37,8 @@ const FoodDetail = (props: Props) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <ImageBackground source={food?.image} className="w-[100%] h-[358px]">
-            <View className="flex flex-row justify-between items-center p-10">
-              <BackButton />
-              <Text className="font-StratosSemiBold text-[20px]">Order</Text>
-              <View></View>
+            <View className="p-2">
+              <Nav title="Order" />
             </View>
           </ImageBackground>
         </View>
