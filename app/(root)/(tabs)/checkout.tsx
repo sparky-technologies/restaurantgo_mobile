@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import { images } from "@/constants";
 import CartItemCard from "@/components/CartItemCard";
 import CustomButton from "@/components/CustomButton";
+import { Href, router } from "expo-router";
 
 type Props = {};
 
@@ -22,6 +23,7 @@ const Checkout = (props: Props) => {
   };
   const handleCheckout = () => {
     console.log("Checkout initiated");
+    router.push("/(root)/order-summary" as Href);
   };
   const cart = useMemo(
     () => [
