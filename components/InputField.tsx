@@ -26,7 +26,9 @@ const InputField = ({
   setSecureTextEntry,
   ...props
 }: Props) => (
-  <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+  <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : ("undefined" as any)}
+  >
     <TouchableOpacity onPress={Keyboard.dismiss}>
       <View className={"my-2 w-full"}>
         <Text className="text-[16px] font-StratosMedium mb-3">{label}</Text>

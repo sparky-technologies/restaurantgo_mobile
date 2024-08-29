@@ -22,6 +22,7 @@ const Home = (props: Props) => {
   const balance = 23000;
   const handleAddFundsPress = () => {
     console.log("Funds Added");
+    router.push("/(root)/fund-account-card" as Href);
   };
   const handleShowBalancePress = () => {
     setShowBalance(!showBalance);

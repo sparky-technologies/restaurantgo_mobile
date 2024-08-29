@@ -27,6 +27,9 @@ import banner2 from "@/assets/images/banner2.svg";
 import stars from "@/assets/icons/stars.png";
 import rightArrow from "@/assets/icons/rightArrow.png";
 import world from "@/assets/icons/world.png";
+import bankLogo from "@/assets/images/bankLogo.png";
+import panel from "@/assets/images/panel.png";
+import visa from "@/assets/images/visa.png";
 
 export const images = {
   banner,
@@ -42,6 +45,9 @@ export const images = {
   pizza,
   profile,
   banner2,
+  bankLogo,
+  panel,
+  visa,
 };
 
 export const icons = {
