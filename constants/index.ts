@@ -30,6 +30,7 @@ import world from "@/assets/icons/world.png";
 import bankLogo from "@/assets/images/bankLogo.png";
 import panel from "@/assets/images/panel.png";
 import visa from "@/assets/images/visa.png";
+import cancel from "@/assets/icons/cancel.png";
 
 export const images = {
   banner,
@@ -67,6 +68,7 @@ export const icons = {
   stars,
   rightArrow,
   world,
+  cancel,
 };
 
 export const data = [
@@ -98,7 +100,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 12,
   },
   {
     name: "Grilled Chicken Salad",
@@ -118,7 +120,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 5,
   },
   {
     name: "Grilled Chicken Salad",
@@ -128,7 +130,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 4,
   },
   {
     name: "Grilled Chicken Salad",
@@ -138,7 +140,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 6,
   },
   {
     name: "Grilled Chicken Salad",
@@ -148,7 +150,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 7,
   },
   {
     name: "Grilled Chicken Salad",
@@ -158,7 +160,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 8,
   },
   {
     name: "Grilled Chicken Salad",
@@ -168,7 +170,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 9,
   },
   {
     name: "Grilled Chicken Salad",
@@ -178,7 +180,7 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 10,
   },
   {
     name: "Grilled Chicken Salad",
@@ -188,6 +190,6 @@ export const data = [
       "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
     category: "Salad",
     rating: 4.8,
-    id: 3,
+    id: 11,
   },
 ];

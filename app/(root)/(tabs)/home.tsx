@@ -5,7 +5,7 @@ import {
   Image,
   TextInput,
   FlatList,
-  ScrollView,
+  Modal,
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -14,35 +14,60 @@ import CustomButton from "@/components/CustomButton";
 import { icons, images, data } from "@/constants";
 import FoodCard from "@/components/FoodCard";
 import { Href, router } from "expo-router";
+import ReactNativeModal from "react-native-modal";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 type Props = {};
 
 const Home = (props: Props) => {
   const [showBalance, setShowBalance] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const balance = 23000;
+  const handleDone = () => {
+    console.log("Done!");
+    setShowModal(false);
+  };
   const handleAddFundsPress = () => {
     console.log("Funds Added");
+    setShowModal(true);
+    // router.push("/(root)/fund-account-card" as Href);
+  };
+  const handleCardPress = () => {
+    console.log("Card Selected");
+    setShowModal(false);
     router.push("/(root)/fund-account-card" as Href);
+  };
+  const handleTransferPress = () => {
+    console.log("Transfer Selected");
+    setShowModal(false);
+    router.push("/(root)/transfer" as Href);
   };
   const handleShowBalancePress = () => {
     setShowBalance(!showBalance);
+  };
+  const cancelModal = () => {
+    setShowModal(false);
   };
   const categories = [
     {
       name: "Pizza",
       icon: images.pizza,
+      id: 1,
     },
     {
       name: "Burger",
       icon: images.bugger,
+      id: 2,
     },
     {
       name: "Drinks",
       icon: images.drinks,
+      id: 3,
     },
     {
       name: "Chicken",
       icon: images.chicken,
+      id: 4,
     },
   ];
   return (
@@ -97,11 +122,12 @@ const Home = (props: Props) => {
           data={categories}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => (
+          renderItem={({ item, index }) => (
             <Image
               source={item.icon}
               className="w-[72px] h-[48px] mr-2"
               resizeMode="contain"
+              key={item.id}
             />
           )}
         />
@@ -116,27 +142,51 @@ const Home = (props: Props) => {
       </View>
       {/* Food cards list */}
       <View className="mb-10">
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <FlatList
-            data={data}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                onPress={() => router.push(`/food/${item.id}` as Href)}
-              >
-                <FoodCard
-                  name={item.name}
-                  price={item.price}
-                  loading={false}
-                  image={item.image}
-                  addToCart={() => console.log("Added to cart")}
-                />
-              </TouchableOpacity>
-            )}
-          />
-        </ScrollView>
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id as any}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              onPress={() => router.push(`/food/${item.id}` as Href)}
+              key={item.id}
+            >
+              <FoodCard
+                name={item.name}
+                price={item.price}
+                loading={false}
+                image={item.image}
+                addToCart={() => console.log("Added to cart")}
+              />
+            </TouchableOpacity>
+          )}
+        />
       </View>
+      <ReactNativeModal
+        isVisible={showModal}
+        onDismiss={() => setShowModal(false)}
+      >
+        <View className="flex justify-start flex-col bg-white rounded-2xl min-h-[100px]">
+          <View className="flex flex-row p-2 justify-end">
+            <TouchableOpacity onPress={cancelModal}>
+              <Image source={icons.cancel} resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+          <View className="flex flex-col px-3 py-2">
+            <TouchableOpacity onPress={handleTransferPress}>
+              <Text className="text-center text-[20px] font-StratosSemiBold">
+                Bank Transfer
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleCardPress}>
+              <Text className="text-center text-[20px] font-StratosSemiBold">
+                Card
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ReactNativeModal>
     </SafeAreaView>
   );
 };
