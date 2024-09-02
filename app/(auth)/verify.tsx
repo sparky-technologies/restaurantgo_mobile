@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import OtpInput from "@/components/OtpInput";
@@ -41,6 +41,13 @@ const Verification = (props: Props) => {
       </View>
       <View className="mt-10">
         <OtpInput otp={otp} setOtp={setOtp} />
+      </View>
+      <View className="flex flex-row justify-end">
+        <TouchableOpacity>
+          <Text className="text-primary font-StratosMedium text-[14px]">
+            Resend Otp
+          </Text>
+        </TouchableOpacity>
       </View>
       <View className="mt-[50px]">
         <CustomButton

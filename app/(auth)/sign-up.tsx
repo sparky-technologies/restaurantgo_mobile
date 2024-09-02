@@ -5,7 +5,10 @@ import InputField from "@/components/InputField";
 import { icons } from "@/constants";
 import CustomButton from "@/components/CustomButton";
 import { Link, router } from "expo-router";
-import { useRouteStore } from "@/store";
+import { useRouteStore, useEmailStore } from "@/store";
+import { register, RegisterPayload } from "@/api/auth";
+import CustomModal from "@/components/CustomModal";
+import CustomErrorModal from "@/components/CustomErrorModal";
 
 type Props = {};
 
@@ -16,14 +19,50 @@ const SignUp = (props: Props) => {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const { setRoute } = useRouteStore();
+  const { setEmail } = useEmailStore();
+
+  const registerUser = async (payload: RegisterPayload) => {
+    try {
+      setLoading(true);
+      const response = await register(payload);
+      if (response.status === "success") {
+        console.log("User registered successfully!");
+        // Navigate to verification screen
+        setEmail(form.email);
+        setRoute("verify");
+        router.push("/(auth)/verify");
+      } else if (response.status_code === 400) {
+        console.log(response.message);
+        const errors = response.message;
+        setErrors({
+          username: errors.username || "",
+          email: errors.email || "",
+          password: errors.password1 || "",
+          confirmPassword: errors.password2 || "",
+        });
+        console.log("Error registering user:", response.message);
+      } else {
+        console.log("Error registering user:", response.status_code);
+        setErrorMessage(response.message);
+        setShowErrorModal(true);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   const handleSignUp = () => {
-    setLoading(true);
-    setRoute("sign-up");
-    console.log("Form Submitted!");
-    console.log(form);
-    router.push("/(auth)/verify");
-    setLoading(false);
+    registerUser(form);
   };
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(false);
@@ -49,6 +88,12 @@ const SignUp = (props: Props) => {
             })
           }
         />
+        {errors.username && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.username}
+          </Text>
+        )}
+
         <InputField
           label={"Email"}
           placeholder="ayobami@dev.com"
@@ -60,6 +105,11 @@ const SignUp = (props: Props) => {
             })
           }
         />
+        {errors.email && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.email}
+          </Text>
+        )}
         <InputField
           label={"Password"}
           placeholder="somepassword"
@@ -74,6 +124,11 @@ const SignUp = (props: Props) => {
             })
           }
         />
+        {errors.password && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.password}
+          </Text>
+        )}
         <InputField
           label={"Confirm Password"}
           placeholder="somepassword"
@@ -88,6 +143,11 @@ const SignUp = (props: Props) => {
             })
           }
         />
+        {errors.confirmPassword && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.confirmPassword}
+          </Text>
+        )}
         <View className="mt-8">
           <View className="flex items-center justify-center">
             <CustomButton
@@ -103,6 +163,13 @@ const SignUp = (props: Props) => {
             </Link>
           </View>
         </View>
+        <CustomErrorModal
+          showModal={showErrorModal}
+          btnTitle="Close"
+          handleDone={() => setShowErrorModal(false)}
+          text={errorMessage}
+          title="Failed"
+        />
       </ScrollView>
     </SafeAreaView>
   );

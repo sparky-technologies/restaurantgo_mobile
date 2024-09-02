@@ -193,3 +193,5 @@ export const data = [
     id: 11,
   },
 ];
+
+export const baseUrl = "https://restaurantgo.pythonanywhere.com";
