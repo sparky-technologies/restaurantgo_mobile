@@ -17,27 +17,21 @@ interface EmailStoreProps {
 
 export const useRouteStore = create<StoreProps>((set) => ({
   route: "sign-up",
-  setRoute: ({ route }: { route: string }) => {
-    set(() => ({
-      route: route,
-    }));
+  setRoute: (route: string) => {
+    set({ route });
   },
 }));
 
 export const useUserStore = create<UserStoreProps>((set) => ({
   user: null,
-  setUser: ({ user }: { user: any }) => {
-    set(() => ({
-      user: user,
-    }));
+  setUser: (user: any) => {
+    set({ user: user });
   },
 }));
 
 export const useEmailStore = create<EmailStoreProps>((set) => ({
   email: "",
-  setEmail: ({ email }: { email: string }) => {
-    set(() => ({
-      email: email,
-    }));
+  setEmail: (email: string) => {
+    set({ email });
   },
 }));

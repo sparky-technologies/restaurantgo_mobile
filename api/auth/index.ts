@@ -7,6 +7,15 @@ export interface RegisterPayload {
   username: string;
 }
 
+export interface VerifyOTP {
+  email: string;
+  otp: string;
+}
+
+export interface ResendOTPPayload {
+  email: string;
+}
+
 export const register = async (payload: RegisterPayload) => {
   try {
     const response = await fetch(`${baseUrl}/api/v1/register`, {
@@ -25,5 +34,37 @@ export const register = async (payload: RegisterPayload) => {
     return data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const verifyOtp = async (payload: VerifyOTP) => {
+  try {
+    const response = await fetch(`${baseUrl}/api/v1/otp/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resendOtp = async (payload: ResendOTPPayload) => {
+  try {
+    const response = await fetch(`${baseUrl}/api/v1/otp/resend`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 };
