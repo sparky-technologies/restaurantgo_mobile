@@ -38,7 +38,7 @@ const SignUp = (props: Props) => {
         console.log("User registered successfully!");
         // Navigate to verification screen
         setEmail(payload.email);
-        setRoute("verify");
+        setRoute("sign-up");
         router.push("/(auth)/verify");
       } else if (response.status_code === 400) {
         console.log(response.message);

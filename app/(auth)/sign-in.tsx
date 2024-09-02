@@ -5,19 +5,61 @@ import InputField from "@/components/InputField";
 import { icons } from "@/constants";
 import { Link, router } from "expo-router";
 import CustomButton from "@/components/CustomButton";
+import { login, LoginPayload } from "@/api/auth";
+import { storeData } from "@/lib/storage";
 
 type Props = {};
 
 const SignIn = (props: Props) => {
   const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
   const handleLogin = () => {
-    console.log("Login Form submitted");
-    console.log(form);
-    router.push("/(root)/(tabs)/home");
+    const logUserIn = async () => {
+      setLoading(true);
+      try {
+        const response = await login({
+          email: form.email,
+          password: form.password,
+        } as LoginPayload);
+        console.log(response);
+        if (response.status === "success") {
+          // set message
+          setSuccessMessage(response.message);
+          // store token to local storage
+          storeData({
+            key: "token",
+            value: response.data.access_token,
+            expiryTime: response.data.expires_in,
+          });
+          // Navigate to home screen
+          router.push("/(root)/(tabs)/home");
+        } else if (response.status_code === 400) {
+          setErrors({
+            email: response.message.email[0] || "",
+            password: response.message.password[0] || "",
+          });
+        } else {
+          const errors = response.message;
+          console.log(errors);
+          setErrorMessage(errors.error);
+        }
+      } catch (error) {
+        console.error("Failed to log in", error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    logUserIn();
   };
   const [secureTextEntry, setSecureTextEntry] = useState(false);
   return (
@@ -40,6 +82,11 @@ const SignIn = (props: Props) => {
             })
           }
         />
+        {errors.email && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.email}
+          </Text>
+        )}
         <InputField
           label={"Password"}
           placeholder="somepassword"
@@ -54,6 +101,11 @@ const SignIn = (props: Props) => {
             })
           }
         />
+        {errors.password && (
+          <Text className="font-StratosSemiBold text-[10px] text-primary">
+            {errors.password}
+          </Text>
+        )}
         <View className="flex flex-row justify-end">
           <Text className="font-Stratos">Forgot Password </Text>
           <Link href={"/(auth)/reset-password"}>
@@ -61,6 +113,11 @@ const SignIn = (props: Props) => {
               Reset here
             </Text>
           </Link>
+        </View>
+        <View className="mt-4">
+          <Text className="text-[12px] font-StratosSemiBold">
+            {errorMessage && errorMessage}
+          </Text>
         </View>
         <View className="mt-5">
           <View className="flex justify-center items-center">

@@ -3,12 +3,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 interface Store {
   key: string;
   value: string;
+  expiryTime?: number;
 }
 
-const storeData = async ({ key, value }: Store) => {
+const storeData = async ({ key, value, expiryTime }: Store) => {
   try {
     const newKey = key.toString();
-    await AsyncStorage.setItem(newKey, value);
+    if (expiryTime) {
+      const expiresAt = Date.now() + Number(expiryTime);
+      await AsyncStorage.setItem(newKey, JSON.stringify({ value, expiresAt }));
+    } else {
+      await AsyncStorage.setItem(newKey, value);
+    }
   } catch (e) {
     throw e;
   }

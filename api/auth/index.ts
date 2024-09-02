@@ -16,6 +16,11 @@ export interface ResendOTPPayload {
   email: string;
 }
 
+export interface LoginPayload {
+  email: string;
+  password: string;
+}
+
 export const register = async (payload: RegisterPayload) => {
   try {
     const response = await fetch(`${baseUrl}/api/v1/register`, {
@@ -66,5 +71,21 @@ export const resendOtp = async (payload: ResendOTPPayload) => {
     return data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const login = async (payload: LoginPayload) => {
+  try {
+    const response = await fetch(`${baseUrl}/api/v1/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
   }
 };
