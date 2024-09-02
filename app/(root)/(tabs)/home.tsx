@@ -40,7 +40,7 @@ const Home = (props: Props) => {
   const handleTransferPress = () => {
     console.log("Transfer Selected");
     setShowModal(false);
-    router.push("/(root)/transfer" as Href);
+    router.push("/(root)/fund-account-transfer" as Href);
   };
   const handleShowBalancePress = () => {
     setShowBalance(!showBalance);
