@@ -114,7 +114,7 @@ const Home = (props: Props) => {
         </View>
       </View>
 
-      <View className="w-full mt-5 h-[134px]">
+      <View className="w-full mt-4 h-[134px]">
         <Image source={images.banner} resizeMode="contain" />
       </View>
       <View className="mt-4">
@@ -132,7 +132,7 @@ const Home = (props: Props) => {
           )}
         />
       </View>
-      <View className="flex flex-row my-4 justify-between">
+      <View className="flex flex-row my-3 justify-between">
         <Text className="text-[24px] font-StratosBold">Popular Foods</Text>
         <TouchableOpacity onPress={() => router.push("/search")}>
           <Text className="text-sm font-StratosMedium text-other">
@@ -141,7 +141,7 @@ const Home = (props: Props) => {
         </TouchableOpacity>
       </View>
       {/* Food cards list */}
-      <View className="mb-10">
+      <View className="mb-[50px]">
         <FlatList
           data={data}
           keyExtractor={(item) => item.id as any}

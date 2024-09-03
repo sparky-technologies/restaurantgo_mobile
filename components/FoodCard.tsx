@@ -22,8 +22,8 @@ const FoodCard = ({ name, price, image, loading, addToCart }: Props) => {
     <View className="w-[149px] h-[208px] rounded-[8px]">
       <Image source={image} resizeMode="cover" />
       <View className="flex flex-col my-2">
-        <Text className="font-StratosLight text-[11px]">{name}</Text>
-        <Text className="font-StratosBold mb-2 text-[8px]">
+        <Text className="font-StratosLight text-[14px]">{name}</Text>
+        <Text className="font-StratosBold mb-2 text-[12px]">
           Price: ₦{price}
         </Text>
         <Image source={icons.stars} resizeMode="contain" />
