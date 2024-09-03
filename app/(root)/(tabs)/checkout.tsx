@@ -57,7 +57,7 @@ const Checkout = (props: Props) => {
           "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
         category: "Salad",
         rating: 4.8,
-        id: 2,
+        id: 3,
         quantity: 1,
       },
       {
@@ -68,7 +68,7 @@ const Checkout = (props: Props) => {
           "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
         category: "Salad",
         rating: 4.8,
-        id: 2,
+        id: 4,
         quantity: 1,
       },
       {
@@ -79,7 +79,7 @@ const Checkout = (props: Props) => {
           "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
         category: "Salad",
         rating: 4.8,
-        id: 2,
+        id: 5,
         quantity: 1,
       },
       {
@@ -90,7 +90,7 @@ const Checkout = (props: Props) => {
           "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
         category: "Salad",
         rating: 4.8,
-        id: 2,
+        id: 6,
         quantity: 1,
       },
       {
@@ -101,7 +101,7 @@ const Checkout = (props: Props) => {
           "A flavorful and healthy chicken salad with tomatoes, cucumbers, olives, and a dressing made with grilled chicken breast.",
         category: "Salad",
         rating: 4.8,
-        id: 2,
+        id: 7,
         quantity: 1,
       },
     ],

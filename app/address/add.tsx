@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, ScrollView } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Nav from "@/components/Nav";
@@ -36,7 +36,7 @@ const Add = (props: Props) => {
       />
       <Nav title="Add New Address" />
 
-      <View className="p-6">
+      <ScrollView className="p-6">
         <View className="my-4">
           <Text className="text-[16px] font-StratosSemiBold">
             Select your state
@@ -79,18 +79,20 @@ const Add = (props: Props) => {
           <Text className="text-[16px] font-StratosSemiBold">
             Enter your address
           </Text>
-          <View className="rounded-[8px] my-3 border-[1px] border-primary">
+          <View className="rounded-[8px] my-3 p-3 border-[1px] border-primary">
             <TextInput
               numberOfLines={4}
+              multiline={true}
               value={form.address}
               onChangeText={(address) => setForm({ ...form, address })}
               placeholder="123 Main St"
               className="w-full px-2 h-[100px]"
+              textAlignVertical="top"
             />
           </View>
         </View>
 
-        <View className="mt-10">
+        <View className="mt-10 mb-[120px]">
           <CustomButton
             title="Save"
             loading={loading}
@@ -104,7 +106,7 @@ const Add = (props: Props) => {
           text="Address saved successfully"
           title="Success"
         />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
