@@ -1,11 +1,13 @@
-import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Nav from "@/components/Nav";
 import { router, Stack } from "expo-router";
 import Feather from "@expo/vector-icons/Feather";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import CustomButton from "@/components/CustomButton";
+import ReactNativeModal from "react-native-modal";
+import { icons } from "@/constants";
 
 type Props = {};
 
@@ -36,9 +38,22 @@ const Address = (props: Props) => {
   const handleEdit = (id: any) => {
     router.push(`/address/${id}`);
   };
+  const [loading, setLoading] = useState(false);
+  const [id, setId] = useState("");
 
   const handleDelete = (id: any) => {
-    console.log("Deleting");
+    setId(id);
+    setShowModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    console.log(id);
+    console.log("deleting");
+  };
+  const [showModal, setShowModal] = useState(false);
+
+  const cancelModal = () => {
+    setShowModal(false);
   };
   const AddressCard = ({ item }: any) => (
     <View className="w-[311px] my-3 relative p-4 h-[122px] bg-white shadow-md">
@@ -82,6 +97,43 @@ const Address = (props: Props) => {
           />
         </View>
       </View>
+      <ReactNativeModal
+        isVisible={showModal}
+        onDismiss={() => setShowModal(false)}
+      >
+        <View className="flex justify-start p-6 flex-col bg-white rounded-2xl min-h-[100px]">
+          <View className="flex flex-row p-1 justify-end">
+            <TouchableOpacity onPress={cancelModal}>
+              <Image source={icons.cancel} resizeMode="contain" />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <Text className="text-[22px] mb-3 font-StratosBold">Delete</Text>
+            <Text className="text-[12px] font-StratosMedium">
+              Are you sure you want to delete this address? This action cannot
+              be undone.
+            </Text>
+          </View>
+          <View className="mt-10 flex flex-row justify-between items-center">
+            <CustomButton
+              title="Cancel"
+              loading={false}
+              handlePress={cancelModal}
+              width={113}
+              height={49}
+              textSize="18"
+            />
+            <CustomButton
+              title="Delete"
+              loading={loading}
+              handlePress={handleConfirmDelete}
+              width={113}
+              height={49}
+              textSize="18"
+            />
+          </View>
+        </View>
+      </ReactNativeModal>
     </SafeAreaView>
   );
 };
