@@ -15,24 +15,28 @@ const Profile = (props: Props) => {
       icon: icons.lock,
       route: "/password-change",
       description: "Change your default password once a month",
+      id: 1,
     },
     {
       title: "Help",
       icon: icons.help,
       route: "/help",
       description: "Contact support for any of your complaints",
+      id: 2,
     },
     {
       title: "Address",
       icon: icons.world,
       route: "/address",
       description: "Change and add your delivery address",
+      id: 3,
     },
     {
       title: "Logout",
       icon: icons.logout,
       route: "/(auth)/sign-in",
       description: "Logout from your account",
+      id: 4,
     },
   ];
   const handleProfileContentAction = (title: string, route: string) => {
@@ -92,6 +96,7 @@ const Profile = (props: Props) => {
         {profileContent.map((item, Index) => (
           <TouchableOpacity
             onPress={() => handleProfileContentAction(item.title, item.route)}
+            key={item.id}
           >
             <View className="flex flex-row items-center mt-6 relative">
               {/* Icon div */}
