@@ -19,7 +19,8 @@ const ResetPassword = (props: Props) => {
     console.log("Reset Password");
     console.log(form);
     setRoute("reset-password");
-    router.push("/(auth)/verify");
+    // router.push("/(auth)/verify");
+    router.push("/change-password");
   };
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(false);
