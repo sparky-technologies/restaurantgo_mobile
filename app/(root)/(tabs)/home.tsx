@@ -7,6 +7,8 @@ import {
   FlatList,
   Modal,
   ActivityIndicator,
+  ScrollView,
+  RefreshControl,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -95,44 +97,53 @@ const Home = (props: Props) => {
   return (
     <SafeAreaView className="p-6">
       <Header />
-      <View className="flex flex-row items-center justify-between">
-        {profileLoading ? (
-          <ActivityIndicator size={25} color="#D33237" />
-        ) : (
-          <View className="mt-5 flex flex-col">
-            <Text className="text-[16px] font-StratosMedium">
-              Welcome, {userDetails && userDetails.username}
-            </Text>
-            <View className="mt-2 flex flex-row">
-              <Text>
-                {showBalance
-                  ? userDetails && userDetails.wallet_balance
-                  : "********"}
-              </Text>
-              <TouchableOpacity
-                className="mx-4"
-                onPress={handleShowBalancePress}
-              >
-                <Image
-                  source={showBalance ? icons.eyeOpen : icons.eyes}
-                  className="w-5 h-5"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-
-        <View className="mt-2">
-          <CustomButton
-            title="Add Funds"
-            loading={false}
-            handlePress={handleAddFundsPress}
-            width={90}
-            height={40}
-            textSize="11"
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            onRefresh={() => fetchUser()}
+            refreshing={profileLoading}
           />
+        }
+      >
+        <View className="flex flex-row items-center justify-between">
+          {profileLoading ? (
+            <ActivityIndicator size={25} color="#D33237" />
+          ) : (
+            <View className="mt-5 flex flex-col">
+              <Text className="text-[16px] font-StratosMedium">
+                Welcome, {userDetails && userDetails.username}
+              </Text>
+              <View className="mt-2 flex flex-row">
+                <Text>
+                  {showBalance
+                    ? userDetails && userDetails.wallet_balance
+                    : "********"}
+                </Text>
+                <TouchableOpacity
+                  className="mx-4"
+                  onPress={handleShowBalancePress}
+                >
+                  <Image
+                    source={showBalance ? icons.eyeOpen : icons.eyes}
+                    className="w-5 h-5"
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+
+          <View className="mt-2">
+            <CustomButton
+              title="Add Funds"
+              loading={false}
+              handlePress={handleAddFundsPress}
+              width={90}
+              height={40}
+              textSize="11"
+            />
+          </View>
         </View>
-      </View>
+      </ScrollView>
       <View className="flex flex-row mt-4 justify-between">
         <View className="flex flex-row w-[260px] justify-start p-2 items-center relative bg-neutral-100 rounded-[20px] border-[1px] border-primary">
           <Image source={icons.search} className="w-6 h-6 ml-4" />
