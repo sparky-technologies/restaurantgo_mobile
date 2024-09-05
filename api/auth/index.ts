@@ -21,6 +21,10 @@ export interface LoginPayload {
   password: string;
 }
 
+export interface ResetPasswordPayload {
+  email: string;
+}
+
 export const register = async (payload: RegisterPayload) => {
   try {
     const response = await fetch(`${baseUrl}/api/v1/register`, {
@@ -87,5 +91,21 @@ export const login = async (payload: LoginPayload) => {
     return data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const resetPassword = async (resetPassword: ResetPasswordPayload) => {
+  try {
+    const response = await fetch(`${baseUrl}/api/v1/reset-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(resetPassword),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 };

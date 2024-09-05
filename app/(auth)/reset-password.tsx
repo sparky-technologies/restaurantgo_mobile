@@ -5,6 +5,9 @@ import InputField from "@/components/InputField";
 import CustomButton from "@/components/CustomButton";
 import { router } from "expo-router";
 import { useRouteStore } from "@/store";
+import { resetPassword } from "@/api/auth";
+import CustomErrorModal from "@/components/CustomErrorModal";
+import { useEmailStore } from "@/store";
 
 type Props = {};
 
@@ -12,15 +15,32 @@ const ResetPassword = (props: Props) => {
   const [form, setForm] = useState({
     email: "",
   });
+  const { setEmail } = useEmailStore();
   const { setRoute } = useRouteStore();
+  const [showErrorModal, setShowErrorModal] = useState(false);
+  const [errorMessage, setShowErrorMessage] = useState("");
+  const handleErrorDone = () => {
+    setShowErrorModal(false);
+  };
 
   const handleResetButtonPress = () => {
     // TODO: api request reset password
-    console.log("Reset Password");
-    console.log(form);
-    setRoute("reset-password");
-    // router.push("/(auth)/verify");
-    router.push("/change-password");
+    setLoading(true);
+    const passwordReset = async () => {
+      const response = await resetPassword(form);
+      if (response.status === "success") {
+        setLoading(false);
+        console.log("Password reset successfully!");
+        setRoute("reset-password");
+        setEmail(form.email);
+        router.push("/(auth)/verify");
+      } else {
+        setLoading(false);
+        setShowErrorMessage(response.message);
+        setShowErrorModal(true);
+      }
+    };
+    passwordReset();
   };
   const [loading, setLoading] = useState(false);
   const [secureTextEntry, setSecureTextEntry] = useState(false);
@@ -51,6 +71,16 @@ const ResetPassword = (props: Props) => {
             loading={loading}
             title="Reset Password"
             handlePress={handleResetButtonPress}
+          />
+        </View>
+
+        <View>
+          <CustomErrorModal
+            showModal={showErrorModal}
+            btnTitle="Close"
+            handleDone={handleErrorDone}
+            text={errorMessage}
+            title="Failed"
           />
         </View>
       </View>

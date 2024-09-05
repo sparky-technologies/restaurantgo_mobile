@@ -87,6 +87,7 @@ const Verification = (props: Props) => {
   const handleOtpSubmit = () => {
     // TODO: implement otp submit
     const formattedOtp = otp.join("");
+    console.log(email, formattedOtp);
     const payload = {
       otp: formattedOtp,
       email: email,
