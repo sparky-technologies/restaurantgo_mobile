@@ -27,17 +27,21 @@ const ResetPassword = (props: Props) => {
     // TODO: api request reset password
     setLoading(true);
     const passwordReset = async () => {
-      const response = await resetPassword(form);
-      if (response.status === "success") {
-        setLoading(false);
-        console.log("Password reset successfully!");
-        setRoute("reset-password");
-        setEmail(form.email);
-        router.push("/(auth)/verify");
-      } else {
-        setLoading(false);
-        setShowErrorMessage(response.message);
-        setShowErrorModal(true);
+      try {
+        const response = await resetPassword(form);
+        if (response.status === "success") {
+          setLoading(false);
+          console.log("Password reset successfully!");
+          setRoute("reset-password");
+          setEmail(form.email);
+          router.push("/(auth)/verify");
+        } else {
+          setLoading(false);
+          setShowErrorMessage(response.message);
+          setShowErrorModal(true);
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     passwordReset();

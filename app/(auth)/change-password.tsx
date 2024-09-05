@@ -7,11 +7,19 @@ import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
 import { Href, router } from "expo-router";
 import CustomErrorModal from "@/components/CustomErrorModal";
+import { useOtpStore } from "@/store";
+import { resetChangePassword } from "@/api/auth";
 
 type Props = {};
 
 const ChangePassword = (props: Props) => {
   const [secureTextEntry, setSecureTextEntry] = useState(false);
+  const { otp } = useOtpStore();
+  const [form, setForm] = useState({
+    reset_token: otp,
+    password1: "",
+    password2: "",
+  });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
@@ -20,8 +28,20 @@ const ChangePassword = (props: Props) => {
   const handleErrorDone = () => {
     setShowErrorModal(false);
   };
-  const handleSavePssword = () => {
-    setShowModal(true);
+  const handleSavePassword = () => {
+    // implement save password api request
+    const forgotPassword = async () => {
+      const response = await resetChangePassword(form);
+      if (response.status === "success") {
+        console.log("Password reset successfully!");
+        setSuccessMessage("Password reset successfully!");
+        setShowModal(true);
+      } else {
+        setErrorMessage("Failed to reset password. Please try again.");
+        setShowErrorModal(true);
+      }
+    };
+    forgotPassword();
     console.log("Password Changed");
   };
 
@@ -46,6 +66,12 @@ const ChangePassword = (props: Props) => {
           setSecureTextEntry={setSecureTextEntry}
           icon={secureTextEntry ? icons.eyes : icons.eyeOpen}
           placeholder="ayojsuu33"
+          onChangeText={(password1) =>
+            setForm({
+              ...form,
+              password1,
+            })
+          }
         />
         <InputField
           label="Retype New Password"
@@ -53,6 +79,12 @@ const ChangePassword = (props: Props) => {
           setSecureTextEntry={setSecureTextEntry}
           icon={secureTextEntry ? icons.eyes : icons.eyeOpen}
           placeholder="aseerrrrr"
+          onChangeText={(password2) =>
+            setForm({
+              ...form,
+              password2,
+            })
+          }
         />
       </View>
 
@@ -60,7 +92,7 @@ const ChangePassword = (props: Props) => {
         <CustomButton
           loading={loading}
           title="Save Password"
-          handlePress={handleSavePssword}
+          handlePress={handleSavePassword}
         />
         <CustomModal
           showModal={showModal}

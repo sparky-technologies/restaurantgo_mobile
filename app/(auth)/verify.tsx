@@ -6,7 +6,7 @@ import CustomButton from "@/components/CustomButton";
 import ReactNativeModal from "react-native-modal";
 import { images } from "@/constants";
 import { Href, router } from "expo-router";
-import { useRouteStore, useEmailStore } from "@/store";
+import { useRouteStore, useEmailStore, useOtpStore } from "@/store";
 import CustomModal from "@/components/CustomModal";
 import { verifyOtp, VerifyOTP, resendOtp, ResendOTPPayload } from "@/api/auth";
 import CustomErrorModal from "@/components/CustomErrorModal";
@@ -24,7 +24,7 @@ const Verification = (props: Props) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [otpResendMsg, setOtpResendMsg] = useState("");
   const [waitTime, setWaitTime] = useState(0);
-
+  const { setOTP } = useOtpStore();
   useEffect(() => {
     if (waitTime > 0) {
       const timer = setInterval(() => {
@@ -87,6 +87,7 @@ const Verification = (props: Props) => {
   const handleOtpSubmit = () => {
     // TODO: implement otp submit
     const formattedOtp = otp.join("");
+    setOTP(formattedOtp);
     console.log(email, formattedOtp);
     const payload = {
       otp: formattedOtp,

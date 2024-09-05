@@ -25,9 +25,15 @@ export interface ResetPasswordPayload {
   email: string;
 }
 
+export interface ForgotPasswordPayload {
+  reset_token: string;
+  password1: string;
+  password2: string;
+}
+
 export const register = async (payload: RegisterPayload) => {
   try {
-    const response = await fetch(`${baseUrl}/api/v1/register`, {
+    const response = await fetch(`${baseUrl}/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +54,7 @@ export const register = async (payload: RegisterPayload) => {
 
 export const verifyOtp = async (payload: VerifyOTP) => {
   try {
-    const response = await fetch(`${baseUrl}/api/v1/otp/verify`, {
+    const response = await fetch(`${baseUrl}/otp/verify`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +70,7 @@ export const verifyOtp = async (payload: VerifyOTP) => {
 
 export const resendOtp = async (payload: ResendOTPPayload) => {
   try {
-    const response = await fetch(`${baseUrl}/api/v1/otp/resend`, {
+    const response = await fetch(`${baseUrl}/otp/resend`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -80,7 +86,7 @@ export const resendOtp = async (payload: ResendOTPPayload) => {
 
 export const login = async (payload: LoginPayload) => {
   try {
-    const response = await fetch(`${baseUrl}/api/v1/login`, {
+    const response = await fetch(`${baseUrl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,12 +102,28 @@ export const login = async (payload: LoginPayload) => {
 
 export const resetPassword = async (resetPassword: ResetPasswordPayload) => {
   try {
-    const response = await fetch(`${baseUrl}/api/v1/reset-password`, {
+    const response = await fetch(`${baseUrl}/reset-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(resetPassword),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resetChangePassword = async (pl: ForgotPasswordPayload) => {
+  try {
+    const response = await fetch(`${baseUrl}/change-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pl),
     });
     const data = await response.json();
     return data;

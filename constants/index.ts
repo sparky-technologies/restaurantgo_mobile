@@ -194,4 +194,4 @@ export const data = [
   },
 ];
 
-export const baseUrl = "https://restaurantgo.pythonanywhere.com";
+export const baseUrl = "https://restaurantgo.pythonanywhere.com/api/v1";
