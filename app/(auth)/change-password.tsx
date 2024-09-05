@@ -30,14 +30,18 @@ const ChangePassword = (props: Props) => {
   };
   const handleSavePassword = () => {
     // implement save password api request
+    setLoading(true);
     const forgotPassword = async () => {
       const response = await resetChangePassword(form);
+      console.log(response);
       if (response.status === "success") {
         console.log("Password reset successfully!");
-        setSuccessMessage("Password reset successfully!");
+        setSuccessMessage(response.message);
+        setLoading(false);
         setShowModal(true);
       } else {
-        setErrorMessage("Failed to reset password. Please try again.");
+        setLoading(false);
+        setErrorMessage(response.message);
         setShowErrorModal(true);
       }
     };

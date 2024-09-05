@@ -29,7 +29,7 @@ const storeObjectData = async ({ key, value }: any) => {
   }
 };
 
-const getData = async (key: any): Promise<string | null> => {
+const getData = async (key: any): Promise<any | null> => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {

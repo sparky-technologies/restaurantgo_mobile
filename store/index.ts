@@ -20,6 +20,11 @@ interface OtpStore {
   setOTP: (otp: string) => void;
 }
 
+interface TokenStore {
+  token: any;
+  setToken: any;
+}
+
 export const useRouteStore = create<StoreProps>((set) => ({
   route: "sign-up",
   setRoute: (route: string) => {
@@ -31,6 +36,13 @@ export const useUserStore = create<UserStoreProps>((set) => ({
   user: null,
   setUser: (user: any) => {
     set({ user: user });
+  },
+}));
+
+export const useTokenStore = create<TokenStore>((set) => ({
+  token: "",
+  setToken: (token: string) => {
+    set({ token });
   },
 }));
 

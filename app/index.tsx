@@ -5,15 +5,16 @@ import { useState, useEffect } from "react";
 
 export default function Index() {
   // const [user, setUser] = useState<User | null>(null);
-  const { getUser, user } = useUser();
+  const { getUser, token } = useUser();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    getUser("user");
+    getUser("token");
     setMounted(true);
   }, [mounted]);
+  console.log(token);
   if (!mounted) return;
-  if (user) {
+  if (token) {
     return <Redirect href={"/(root)/(tabs)/home" as Href} />;
   }
   return <Redirect href={"/(auth)/welcome" as Href} />;
