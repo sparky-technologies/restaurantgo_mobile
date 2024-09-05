@@ -6,8 +6,9 @@ import {
   TextInput,
   FlatList,
   Modal,
+  ActivityIndicator,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
 import CustomButton from "@/components/CustomButton";
@@ -16,12 +17,33 @@ import FoodCard from "@/components/FoodCard";
 import { Href, router } from "expo-router";
 import ReactNativeModal from "react-native-modal";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import { getUserDetails } from "@/api/user";
 
 type Props = {};
 
 const Home = (props: Props) => {
   const [showBalance, setShowBalance] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [userDetails, setUserDetails] = useState<any>(null);
+  const [profileLoading, setProfileLoading] = useState(false);
+
+  const fetchUser = async () => {
+    setProfileLoading(true);
+    const response = await getUserDetails();
+    console.log(response);
+    if (response.status === "success") {
+      setProfileLoading(false);
+      setUserDetails(response.data);
+    } else {
+      setProfileLoading(false);
+      console.log(response.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+    console.log(userDetails);
+  }, []);
   const balance = 23000;
   const handleDone = () => {
     console.log("Done!");
@@ -74,18 +96,32 @@ const Home = (props: Props) => {
     <SafeAreaView className="p-6">
       <Header />
       <View className="flex flex-row items-center justify-between">
-        <View className="mt-5 flex flex-col">
-          <Text className="text-[16px] font-StratosMedium">Welcome, Ayo</Text>
-          <View className="mt-2 flex flex-row">
-            <Text>{showBalance ? balance : "********"}</Text>
-            <TouchableOpacity className="mx-4" onPress={handleShowBalancePress}>
-              <Image
-                source={showBalance ? icons.eyeOpen : icons.eyes}
-                className="w-5 h-5"
-              />
-            </TouchableOpacity>
+        {profileLoading ? (
+          <ActivityIndicator size={25} color="#D33237" />
+        ) : (
+          <View className="mt-5 flex flex-col">
+            <Text className="text-[16px] font-StratosMedium">
+              Welcome, {userDetails && userDetails.username}
+            </Text>
+            <View className="mt-2 flex flex-row">
+              <Text>
+                {showBalance
+                  ? userDetails && userDetails.wallet_balance
+                  : "********"}
+              </Text>
+              <TouchableOpacity
+                className="mx-4"
+                onPress={handleShowBalancePress}
+              >
+                <Image
+                  source={showBalance ? icons.eyeOpen : icons.eyes}
+                  className="w-5 h-5"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        )}
+
         <View className="mt-2">
           <CustomButton
             title="Add Funds"
