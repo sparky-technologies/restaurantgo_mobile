@@ -56,7 +56,7 @@ const Address = (props: Props) => {
     setShowModal(false);
   };
   const AddressCard = ({ item }: any) => (
-    <View className="w-[311px] my-3 relative p-4 h-[122px] bg-white shadow-md">
+    <View className="w-full my-3 relative p-4 h-[122px] bg-white shadow-md">
       <View className="flex flex-col">
         <Text className="text-[20px] mb-2 font-StratosMedium">
           {item.address}
@@ -89,7 +89,7 @@ const Address = (props: Props) => {
         {addresses.map((item) => (
           <AddressCard key={item.id} item={item} />
         ))}
-        <View className="mt-10">
+        <View className="mt-10 flex justify-center items-center">
           <CustomButton
             loading={false}
             title="Add New Address"

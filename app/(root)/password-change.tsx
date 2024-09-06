@@ -53,14 +53,13 @@ const PasswordChange = (props: Props) => {
           />
         </View>
 
-        <View className="mt-5 mb-10">
+        <View className="mt-5  flex justify-center items-center mb-10">
           <CustomButton
             title="Save"
             loading={loading}
             handlePress={handleSavePssword}
           />
         </View>
-
         <CustomModal
           title="Successful"
           showModal={showModal}

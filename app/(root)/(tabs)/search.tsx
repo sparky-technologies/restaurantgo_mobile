@@ -62,7 +62,7 @@ const Search = (props: Props) => {
         />
       </View>
       {/* Product list */}
-      <View className="my-3 flex pl-2 flex-row items-center justify-center">
+      <View className="my-3 flex flex-row items-center justify-center">
         <View>
           {loading ? (
             <ActivityIndicator size={25} color="#D33237" />
