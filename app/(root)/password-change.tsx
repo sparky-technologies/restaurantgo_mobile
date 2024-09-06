@@ -7,19 +7,41 @@ import { icons } from "@/constants";
 import CustomButton from "@/components/CustomButton";
 import CustomModal from "@/components/CustomModal";
 import { router } from "expo-router";
+import { changePassword, ChangePasswordPayload } from "@/api/user";
+import CustomErrorModal from "@/components/CustomErrorModal";
 
 type Props = {};
 
 const PasswordChange = (props: Props) => {
   const [secureTextEntry, setSecureTextEntry] = useState(false);
+  const [form, setForm] = useState({
+    password: "",
+  });
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const handleSavePssword = () => {
-    setShowModal(true);
-    console.log("Password Changed");
+    const passwordChange = async () => {
+      setLoading(true);
+      const response = await changePassword(form);
+      console.log(response);
+      if (response.status === "sucess") {
+        setShowModal(true);
+        setLoading(false);
+      } else {
+        setLoading(false);
+        setShowErrorModal(true);
+        setErrorMessage(response.message);
+      }
+    };
+    passwordChange();
   };
   const handleDone = () => {
     router.push("/profile");
+  };
+  const handleClose = () => {
+    setShowErrorModal(false);
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -43,6 +65,12 @@ const PasswordChange = (props: Props) => {
             icon={secureTextEntry ? icons.eyes : icons.eyeOpen}
             secureTextEntry={secureTextEntry}
             setSecureTextEntry={setSecureTextEntry}
+            onChangeText={(password) =>
+              setForm({
+                ...form,
+                password,
+              })
+            }
           />
           <InputField
             label="Retype New Password"
@@ -66,6 +94,13 @@ const PasswordChange = (props: Props) => {
           text="Your password has been successfully changed!"
           handleDone={handleDone}
           btnTitle="Continue"
+        />
+        <CustomErrorModal
+          btnTitle="Close"
+          title="Failed"
+          showModal={showErrorModal}
+          handleDone={handleClose}
+          text={errorMessage}
         />
       </ScrollView>
     </SafeAreaView>

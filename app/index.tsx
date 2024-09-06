@@ -12,7 +12,6 @@ export default function Index() {
     getUser("token");
     setMounted(true);
   }, [mounted]);
-  console.log(token);
   if (!mounted) return;
   if (token) {
     return <Redirect href={"/(root)/(tabs)/home" as Href} />;
