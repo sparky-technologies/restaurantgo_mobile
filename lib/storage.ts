@@ -52,4 +52,13 @@ const getObjectData = async (key: string) => {
   }
 };
 
-export { storeData, storeObjectData, getData, getObjectData };
+const clearStorage = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log("AsyncStorage cleared successfully");
+  } catch (error) {
+    console.error("Error clearing AsyncStorage:", error);
+  }
+};
+
+export { storeData, storeObjectData, getData, getObjectData, clearStorage };

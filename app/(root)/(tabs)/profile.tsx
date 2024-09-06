@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import { icons, images } from "@/constants";
 import Index from "@/app";
 import { Href, router } from "expo-router";
-import { getObjectData } from "@/lib/storage";
+import { getObjectData, clearStorage } from "@/lib/storage";
 
 type Props = {};
 
@@ -15,7 +15,6 @@ const Profile = (props: Props) => {
     const getUserDetails = async () => {
       const userDetails = await getObjectData("userDetails");
       setUserDetails(userDetails);
-      console.log(userDetails);
     };
     getUserDetails();
   }, []);
@@ -62,6 +61,7 @@ const Profile = (props: Props) => {
           text: "Logout",
           style: "destructive",
           onPress: () => {
+            clearStorage();
             router.push(route as Href);
           },
         },
@@ -97,9 +97,11 @@ const Profile = (props: Props) => {
             className="w-[78px] h-[78px] rounded-full"
           />
           <Text className="mt-2 font-StratosSemiBold text-[20px]">
-            {userDetails.username}
+            {userDetails && userDetails.username}
           </Text>
-          <Text className="text-[14px] font-Stratos">{userDetails.email}</Text>
+          <Text className="text-[14px] font-Stratos">
+            {userDetails && userDetails.email}
+          </Text>
         </View>
         {profileContent.map((item, Index) => (
           <TouchableOpacity
