@@ -145,7 +145,7 @@ const Home = (props: Props) => {
         </View>
       </ScrollView>
       <View className="flex flex-row mt-4 justify-between">
-        <View className="flex flex-row w-[260px] justify-start p-2 items-center relative bg-neutral-100 rounded-[20px] border-[1px] border-primary">
+        <View className="flex flex-row w-[80%] justify-start p-2 items-center relative bg-neutral-100 rounded-[20px] border-[1px] border-primary">
           <Image source={icons.search} className="w-6 h-6 ml-4" />
           <TextInput
             placeholder="Search for delicious meal around you"
@@ -161,10 +161,10 @@ const Home = (props: Props) => {
         </View>
       </View>
 
-      <View className="w-full mt-4 h-[134px]">
-        <Image source={images.banner} resizeMode="contain" />
+      <View className="w-full flex justify-center items-center mt-4 h-[134px]">
+        <Image source={images.banner} resizeMode="cover" />
       </View>
-      <View className="mt-4">
+      <View className="mt-4 flex justify-center items-center">
         <FlatList
           data={categories}
           horizontal={true}
@@ -188,7 +188,7 @@ const Home = (props: Props) => {
         </TouchableOpacity>
       </View>
       {/* Food cards list */}
-      <View className="mb-[50px]">
+      <View className="">
         <FlatList
           data={data}
           keyExtractor={(item) => item.id as any}

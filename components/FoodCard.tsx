@@ -4,10 +4,14 @@ import {
   ImageSourcePropType,
   Image,
   TouchableOpacity,
+  Dimensions,
+  StyleSheet,
 } from "react-native";
 import React from "react";
 import { icons } from "@/constants";
 import CustomButton from "./CustomButton";
+
+const CARD_WIDTH = Dimensions.get("screen").width * 0.5;
 
 type Props = {
   name: string;
@@ -19,14 +23,17 @@ type Props = {
 
 const FoodCard = ({ name, price, image, loading, addToCart }: Props) => {
   return (
-    <View className="w-[149px] h-[208px] rounded-[8px]">
+    <View className="w-[150px] rounded-[8px]" style={styles.card}>
       <Image source={image} resizeMode="cover" />
-      <View className="flex flex-col my-2">
-        <Text className="font-StratosLight text-[14px]">{name}</Text>
-        <Text className="font-StratosBold mb-2 text-[12px]">
-          Price: ₦{price}
-        </Text>
-        <Image source={icons.stars} resizeMode="contain" />
+      <View className="h-[30%] flex flex-col relative mb-2 my-2">
+        <View className="">
+          <Text className="font-StratosLight text-[14px]">{name}</Text>
+        </View>
+        <View className="absolute bottom-0">
+          <Text className="font-StratosBold mb-2 text-[12px]">
+            Price: ₦{price}
+          </Text>
+        </View>
       </View>
       {/* Add to cart Button */}
       <CustomButton
@@ -40,5 +47,13 @@ const FoodCard = ({ name, price, image, loading, addToCart }: Props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    height: CARD_WIDTH,
+    // overflow: "hidden",
+    marginBottom: 15,
+  },
+});
 
 export default FoodCard;
