@@ -1,14 +1,24 @@
 import { View, Text, Image, TouchableOpacity, Alert } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Nav from "@/components/Nav";
 import { icons, images } from "@/constants";
 import Index from "@/app";
 import { Href, router } from "expo-router";
+import { getObjectData } from "@/lib/storage";
 
 type Props = {};
 
 const Profile = (props: Props) => {
+  const [userDetails, setUserDetails] = useState<any>(null);
+  useEffect(() => {
+    const getUserDetails = async () => {
+      const userDetails = await getObjectData("userDetails");
+      setUserDetails(userDetails);
+      console.log(userDetails);
+    };
+    getUserDetails();
+  }, []);
   const profileContent = [
     {
       title: "Password",
@@ -87,11 +97,9 @@ const Profile = (props: Props) => {
             className="w-[78px] h-[78px] rounded-full"
           />
           <Text className="mt-2 font-StratosSemiBold text-[20px]">
-            Ayobami Alaran
+            {userDetails.username}
           </Text>
-          <Text className="text-[14px] font-Stratos">
-            Ayobamidele006@gmail.com
-          </Text>
+          <Text className="text-[14px] font-Stratos">{userDetails.email}</Text>
         </View>
         {profileContent.map((item, Index) => (
           <TouchableOpacity

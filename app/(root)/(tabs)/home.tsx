@@ -20,6 +20,7 @@ import { Href, router } from "expo-router";
 import ReactNativeModal from "react-native-modal";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { getUserDetails } from "@/api/user";
+import { storeObjectData } from "@/lib/storage";
 
 type Props = {};
 
@@ -36,6 +37,10 @@ const Home = (props: Props) => {
     if (response.status === "success") {
       setProfileLoading(false);
       setUserDetails(response.data);
+      await storeObjectData({
+        key: "userDetails",
+        value: response.data,
+      });
     } else {
       setProfileLoading(false);
       console.log(response.message);
