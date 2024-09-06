@@ -22,7 +22,7 @@ const CartItemCard = ({
   quantity,
   handleUpdate,
 }: ItemProps) => (
-  <View className="flex mb-2 flex-row p-2 items-center w-[311px] h-[131px] border-[1px] border-primary rounded-[10px]">
+  <View className="flex mb-2 flex-row p-2 items-center w-full h-[131px] border-[1px] border-primary rounded-[10px]">
     {/* Image view */}
     <View className="w-[151px] h-[99px] rounded-[8px]">
       <Image source={image} resizeMode="contain" />
